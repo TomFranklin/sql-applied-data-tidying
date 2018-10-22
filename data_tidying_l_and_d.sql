@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------------------
 -- Script Name:		data_tidying_l_and_d.sql
 -- Description:		Learning how to tidy underlying data in SQL 
--- Author:			Tom Franklin
--- Creation Date:   11/10/2018
+-- Author:		Tom Franklin
+-- Creation Date:       11/10/2018
 ----------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------
@@ -53,21 +53,21 @@ DROP TABLE #Table3
 SELECT * INTO #Table3 FROM (
 
 SELECT *,
-case when measure	= 'ELIG_girls_17'  then 'All pupils regardless of progression' 
+case when measure   = 'ELIG_girls_17'  then 'All pupils regardless of progression' 
      when measure   = 'ELIG_boys_17' then 'All pupils regardless of progression'
      when measure   = 'ELIG_all_17' then 'All pupils regardless of progression'  
-     when measure	= 'AT_LEAST_EXPECTED_girls_17' then 'Meeting at least epected standards' 
-	 when measure	= 'AT_LEAST_EXPECTED_boys_17'  then 'Meeting at least epected standards' 
-	 when measure	= 'AT_LEAST_EXPECTED_all_17' then 'Meeting at least epected standards'
-	 when measure	= 'GOODLEV_girls_17'then 'Making good levels of development'
-	 when measure	= 'GOODLEV_boys_17' then 'Making good levels of development'
-	 when measure	= 'GOODLEV_all_17'then 'Making good levels of development'
-	 when measure	= 'ELIG_all_FSM_17'then 'Pupils with FSM eligibility'
-	 when measure	= 'ELIG_girls_FSM_17'then 'Pupils with FSM eligibility'
-	 when measure	= 'ELIG_boys_FSM_17'then 'Pupils with FSM eligibility' end as progression_measure,
+     when measure   = 'AT_LEAST_EXPECTED_girls_17' then 'Meeting at least epected standards' 
+     when measure   = 'AT_LEAST_EXPECTED_boys_17'  then 'Meeting at least epected standards' 
+     when measure   = 'AT_LEAST_EXPECTED_all_17' then 'Meeting at least epected standards'
+     when measure   = 'GOODLEV_girls_17'then 'Making good levels of development'
+     when measure   = 'GOODLEV_boys_17' then 'Making good levels of development'
+     when measure   = 'GOODLEV_all_17'then 'Making good levels of development'
+     when measure   = 'ELIG_all_FSM_17'then 'Pupils with FSM eligibility'
+     when measure   = 'ELIG_girls_FSM_17'then 'Pupils with FSM eligibility'
+     when measure   = 'ELIG_boys_FSM_17'then 'Pupils with FSM eligibility' end as progression_measure,
 case when measure LIKE '%_girls%' THEN 'Girls' 
      when measure LIKE '%_boys%' THEN 'Boys'
-	 when measure LIKE '%_all%' THEN 'Total'   end as characteristic_gender,
+     when measure LIKE '%_all%' THEN 'Total'   end as characteristic_gender,
 case when measure LIKE '%_17%' THEN 2017 end as [year]
  FROM #Table2
 
@@ -82,12 +82,5 @@ case when measure LIKE '%_17%' THEN 2017 end as [year]
 	 [Characteristic category] AS characteristic_ethnicity,
 	 characteristic_gender, 
 	 progression_measure, 
-	 number  FROM #Table3
-
-
-
-
-
-
-
-
+	 number  
+ FROM #Table3
